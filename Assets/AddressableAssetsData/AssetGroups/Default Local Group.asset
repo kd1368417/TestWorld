@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Default Local Group
+  m_GUID: 74400a12b95bebd4ab4f84b72225a6a8
+  m_SerializeEntries:
+  - m_GUID: 1410c9cdd6e7ed643b8302bcd3c75faa
+    m_Address: Assets/Prefabs/Canvas.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 36eb73120746aa745920ffc3c5ed630c
+    m_Address: Assets/Prefabs/Map1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8913ce8406e768c41807f3860a79ffca
+    m_Address: Assets/Prefabs/StageData.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3487869cbd94f54997bed04cebaed6e
+    m_Address: Assets/Prefabs/Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5f77d0552676534a86dc57a6b299ce7
+    m_Address: Assets/Prefabs/Sphere.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b633c028b7899864494789eb98d99c02
+    m_Address: Assets/Prefabs/Canvas 1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bcb8587821bc9474382d99975cbbaac9
+    m_Address: Assets/Prefabs/Capsule.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 897d995a7e15ec84d9ea6db7918df92c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 481e19ead3ba78c4ab372a4ffcf71493, type: 2}
+    - {fileID: 11400000, guid: b2ef1c90fd31e7041befb7aadcfc10aa, type: 2}
