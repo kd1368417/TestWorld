@@ -3,13 +3,13 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
+// アセットを管理するスクリプト
+
 public class AssetManager : Singleton<AssetManager>
 {
-	private Dictionary<string, Object> cache = new();
-	private Dictionary<string, AsyncOperationHandle> handles = new();
-	private Dictionary<string, int> instanceCounts = new();
-
-	public int LoadedCount => cache.Count;
+	private Dictionary<string, Object> cache = new();					// キャッシュ用
+	private Dictionary<string, AsyncOperationHandle> handles = new();	// ハンドル用
+	private Dictionary<string, int> instanceCounts = new();				// カウント用
 
 	protected override void Release()
 	{
@@ -18,15 +18,15 @@ public class AssetManager : Singleton<AssetManager>
 
 	public async Awaitable<T> Load<T>(string address) where T : Object
 	{
-		// 1. すでにキャッシュにあればカウントを増やして返す
+		// 既にロード済みならキャッシュを返してカウントを増やす
+		// ※参照カウントも増えるため慎重に呼ぶ必要がある
 		if (cache.TryGetValue(address, out Object cached))
 		{
-			instanceCounts[address] = instanceCounts.GetValueOrDefault(address, 0) + 1;
-			return cached as T;
+            instanceCounts[address] = instanceCounts.GetValueOrDefault(address, 0) + 1;
+            return cached as T;
 		}
 
-		// 2. 新規ロード
-		AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(address);
+        AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(address);
 		await handle.Task;
 
 		if (handle.Status != AsyncOperationStatus.Succeeded)
@@ -35,22 +35,20 @@ public class AssetManager : Singleton<AssetManager>
 			return null;
 		}
 
-		// 3. キャッシュとハンドルを登録し、カウントを +1 する
 		cache[address] = handle.Result;
 		handles[address] = handle;
-		instanceCounts[address] = instanceCounts.GetValueOrDefault(address, 0) + 1;
+		instanceCounts[address] = 1;
 
 		return handle.Result;
 	}
 
+	// カウントが0になったら削除する関数
 	public void UnregisterInstance(string address)
 	{
-		if (string.IsNullOrEmpty(address) || !instanceCounts.ContainsKey(address))
-			return;
+		if (string.IsNullOrEmpty(address) || !instanceCounts.ContainsKey(address))return;
 
 		instanceCounts[address]--;
 
-		// カウントが0以下になったら完全にメモリから解放
 		if (instanceCounts[address] <= 0)
 		{
 			instanceCounts.Remove(address);
@@ -59,10 +57,10 @@ public class AssetManager : Singleton<AssetManager>
 		}
 	}
 
+	// キャッシュにすでにあるものを取得したい時に使う
 	public T Get<T>(string address) where T : Object
 	{
-		if (cache.TryGetValue(address, out Object asset))
-			return asset as T;
+		if (cache.TryGetValue(address, out Object asset)) return asset as T;
 
 		Debug.LogWarning($"Asset Not Loaded : {address}");
 		return null;
@@ -70,8 +68,7 @@ public class AssetManager : Singleton<AssetManager>
 
 	private void ReleaseAsset(string address)
 	{
-		if (!handles.TryGetValue(address, out AsyncOperationHandle handle))
-			return;
+		if (!handles.TryGetValue(address, out AsyncOperationHandle handle))return;
 
 		Addressables.Release(handle);
 		handles.Remove(address);

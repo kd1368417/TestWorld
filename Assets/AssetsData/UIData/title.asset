@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c7a7907687e9c4bbc72e96040cdfb4, type: 3}
   m_Name: title
   m_EditorClassIdentifier: Assembly-CSharp::UIData
-  uiPrefabAddress: 
+  uiPrefabAddress: Assets/Prefabs/Canvas 2.prefab
   subAssetAddresses: []

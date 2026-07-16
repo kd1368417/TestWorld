@@ -5,7 +5,5 @@ public class PhaseData : ScriptableObject
 {
     public string phasePrefabAddress;
 
-    //public string playerAddress;
-
     public string[] enemyAddresses;
 }

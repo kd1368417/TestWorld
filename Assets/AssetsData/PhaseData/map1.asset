@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2fd718d82ba7f44bfc7e5212bbfad0, type: 3}
   m_Name: map1
   m_EditorClassIdentifier: Assembly-CSharp::PhaseData
-  phasePrefabAddress: 
-  enemyAddresses: []
+  phasePrefabAddress: Assets/Prefabs/Map1 1.prefab
+  enemyAddresses:
+  - Assets/Prefabs/Capsule.prefab

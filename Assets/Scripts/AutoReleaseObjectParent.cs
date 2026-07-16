@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 削除通知を送るスクリプト
+
 public class AutoReleaseObjectParent : MonoBehaviour
 {
     private List<string> addresses = new();
@@ -8,10 +10,18 @@ public class AutoReleaseObjectParent : MonoBehaviour
     public void Initialize(string stageAddress, string playerAddress, string[] enemyAddresses)
     {
         addresses.Add(stageAddress);
-        if (!string.IsNullOrEmpty(playerAddress)) addresses.Add(playerAddress);
+
+        if (!string.IsNullOrEmpty(playerAddress))
+        {
+            addresses.Add(playerAddress);
+        }
+
         foreach (var addr in enemyAddresses)
         {
-            if (!addresses.Contains(addr)) addresses.Add(addr);
+            if (!addresses.Contains(addr))
+            {
+                addresses.Add(addr);
+            }
         }
     }
 
